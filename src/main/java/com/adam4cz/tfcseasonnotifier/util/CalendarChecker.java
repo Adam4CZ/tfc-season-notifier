@@ -26,7 +26,8 @@ public class CalendarChecker {
         long calendarTicks = calendar.getCalendarTicks();
         long daysInMonth = calendar.getCalendarDaysInMonth();
         // To display current month because TFC starts world on 1st June instead on 1st January
-        long ticksStartYearShift = 5 * daysInMonth;
+        long ticksInMonth = TICKS_IN_DAY * daysInMonth;
+        long ticksStartYearShift = 5 * ticksInMonth;
 
         // Debug log
         TFCSeasonNotifier.LOGGER.info("Current day time: " + currentDayTime + ", Calendar ticks: " + calendarTicks + ", Days in month: " + daysInMonth);
