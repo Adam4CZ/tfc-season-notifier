@@ -1,0 +1,35 @@
+package com.adam4cz.tfcseasonnotifier;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.adam4cz.tfcseasonnotifier.config.CommonConfig;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+@Mod(TFCSeasonNotifier.MOD_ID)
+public class TFCSeasonNotifier {
+
+    public static final String MOD_ID = "tfc_season_notifier";
+
+    public static final Logger LOGGER = LogManager.getLogger();
+
+    @SuppressWarnings("removal")
+    public TFCSeasonNotifier() {
+        // Add listener for setup, register mod config and main event handler 
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
+        MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
+    }
+
+    public void commonSetup(final FMLCommonSetupEvent event) {
+        // Send a log when the mod setup is done
+        LOGGER.info("TFCSeasonNotifier Common Setup");
+    }
+
+}
