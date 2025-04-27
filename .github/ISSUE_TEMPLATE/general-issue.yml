@@ -1,0 +1,70 @@
+name: General Issue
+description: Report a bug or problem with this addon
+labels: ["unconfirmed bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: "*Please use the search functionality before reporting an issue. Also take a look at the closed issues!*"
+  - type: textarea
+    attributes:
+      label: Issue description
+      description: A clear and concise description of the issue and if appropriate what the expected outcome should have been. If applicable, add screenshots to help explain your problem.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: If there are specific steps that need to be taken to reproduce the issue list them here. If applicable, add screenshots to help explain your problem.
+      placeholder: |
+        1. Start by doing...
+        2. Next do...
+        3. See error
+  - type: textarea
+    attributes:
+      label: Expected behaviour
+      description: A clear and concise description of what you expected to happen.
+  - type: dropdown
+    id: minecraft-version
+    attributes:
+      label: Minecraft version
+      description: What version of Minecraft are you using?
+      options:
+        - 1.21.x (not supported yet)
+        - 1.20.x
+        - 1.19.x or earlier (not supported)
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Forge version
+      description: What version of Forge are you using?
+      placeholder: e.g. 47.4.0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: TerraFirmaCraft version
+      description: What version of TFC are you using?
+      placeholder: e.g. 3.2.14
+    validations:
+      required: true
+  - type: dropdown
+    id: tfc-season-notifier-version
+    attributes:
+      label: TFC Season Notifier version
+      description: What version of this addon are you using?
+      options:
+        - 1.0.0 (Latest)
+        - Older
+        - Other (describe in description)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here. If this issue is related to any other mods list their versions here.
+  - type: input
+    attributes:
+      label: "If a (crash)log is relevant for this issue, link it here:"
+      description: "Please provide a [gist](https://gist.github.com/) / [pastebin](https://pastebin.com/) / etc link here. (Make sure that it isn't set to expire!)"

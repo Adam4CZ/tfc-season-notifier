@@ -1,0 +1,26 @@
+name: Feature Request
+description: Suggest an idea or improvement for this addon
+labels: ["enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: "*Please use the search functionality before requesting a new feature. Also take a look at the closed requests!*"
+  - type: textarea
+    attributes:
+      label: Describe the feature you'd like
+      description: A clear and concise description of what feature you would like added.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear and concise description of what the problem is. If applicable, add screenshots to help explain your problem.
+  - type: textarea
+    attributes:
+      label: Describe alternatives you've considered
+      description: A clear and concise description of what you expected to happen.
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here. If this issue is related to any other mods list their versions here.
