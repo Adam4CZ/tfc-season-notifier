@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.adam4cz.tfcseasonnotifier.config.CommonConfig;
 
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -21,10 +20,9 @@ public class TFCSeasonNotifier {
 
     @SuppressWarnings("removal")
     public TFCSeasonNotifier() {
-        // Add listener for setup, register mod config and main event handler 
+        // Add listener for setup and register mod config
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
-        MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
     }
 
     public void commonSetup(final FMLCommonSetupEvent event) {
