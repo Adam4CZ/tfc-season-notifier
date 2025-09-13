@@ -29,8 +29,9 @@ public class CalendarChecker {
         long ticksInMonth = TICKS_IN_DAY * daysInMonth;
         long ticksStartYearShift = 5 * ticksInMonth;
 
-        // Debug log
-        TFCSeasonNotifier.LOGGER.info("Current day time: " + currentDayTime + ", Calendar ticks: " + calendarTicks + ", Days in month: " + daysInMonth);
+        TFCSeasonNotifier.debugLog("currentDayTime: " + currentDayTime);
+        TFCSeasonNotifier.debugLog("calendarTicks: " + calendarTicks);
+        TFCSeasonNotifier.debugLog("daysInMonth: " + daysInMonth);
 
         return ICalendar.getMonthOfYear(ticksStartYearShift + currentDayTime, daysInMonth);
     }

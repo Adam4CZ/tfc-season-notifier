@@ -3,7 +3,7 @@ package com.adam4cz.tfcseasonnotifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.adam4cz.tfcseasonnotifier.config.CommonConfig;
+import com.adam4cz.tfcseasonnotifier.config.ClientConfig;
 
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -22,12 +22,18 @@ public class TFCSeasonNotifier {
     public TFCSeasonNotifier() {
         // Add listener for setup and register mod config
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.CONFIG);
     }
 
     public void commonSetup(final FMLCommonSetupEvent event) {
         // Send a log when the mod setup is done
         LOGGER.info("TFCSeasonNotifier Common Setup");
+    }
+
+    public static void debugLog(String message) {
+        if (ClientConfig.isDebugEnabled()) {
+            LOGGER.debug(message);
+        }
     }
 
 }
