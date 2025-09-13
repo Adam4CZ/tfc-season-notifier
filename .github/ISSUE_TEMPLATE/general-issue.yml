@@ -30,7 +30,6 @@ body:
       label: Minecraft version
       description: What version of Minecraft are you using?
       options:
-        - 1.21.x (not supported yet)
         - 1.20.x
         - 1.19.x or earlier (not supported)
     validations:
@@ -55,7 +54,7 @@ body:
       label: TFC Season Notifier version
       description: What version of this addon are you using?
       options:
-        - 1.0.0 (Latest)
+        - 1.1.0 (Latest)
         - Older
         - Other (describe in description)
     validations:
@@ -66,5 +65,9 @@ body:
       description: Add any other context about the problem here. If this issue is related to any other mods list their versions here.
   - type: input
     attributes:
-      label: "If a (crash)log is relevant for this issue, link it here:"
+      label: "Reproduce your issue with debug mode enabled (set debug=true in /config file) and link it here"
+      description: "Please provide a [gist](https://gist.github.com/) / [pastebin](https://pastebin.com/) / etc link here. (Make sure that it isn't set to expire!)"
+  - type: input
+    attributes:
+      label: "If a (crash)log is relevant for this issue, link it here"
       description: "Please provide a [gist](https://gist.github.com/) / [pastebin](https://pastebin.com/) / etc link here. (Make sure that it isn't set to expire!)"
