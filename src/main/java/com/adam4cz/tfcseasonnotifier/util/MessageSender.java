@@ -5,7 +5,6 @@ import com.adam4cz.tfcseasonnotifier.config.ClientConfig;
 
 import net.dries007.tfc.util.calendar.Month;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
@@ -27,8 +26,8 @@ public class MessageSender {
         }
         
         String key = currentMonth.name().toLowerCase();
-        String title = (ClientConfig.isLangEnabled()) ? I18n.get("titles.tfcseasonnotifier." + key) : ClientConfig.MONTH_CUSTOM_TITLE.get(currentMonth).get();
-        String subtitle = (ClientConfig.isLangEnabled()) ? I18n.get("subtitles.tfcseasonnotifier." + key) : ClientConfig.MONTH_CUSTOM_SUBTITLE.get(currentMonth).get();
+        Component title = (ClientConfig.isLangEnabled()) ? Component.translatable("titles.tfcseasonnotifier." + key) : Component.literal(ClientConfig.MONTH_CUSTOM_TITLE.get(currentMonth).get());
+        Component subtitle = (ClientConfig.isLangEnabled()) ? Component.translatable("subtitles.tfcseasonnotifier." + key) : Component.literal(ClientConfig.MONTH_CUSTOM_SUBTITLE.get(currentMonth).get());
         ChatFormatting titleColor = ClientConfig.getTitleColor(currentMonth);
         ChatFormatting subtitleColor = ClientConfig.getSubtitleColor(currentMonth);
         Integer fadeIn = ClientConfig.FADE_IN.get();
@@ -43,8 +42,8 @@ public class MessageSender {
         TFCSeasonNotifier.debugLog("stay: " + stay);
         TFCSeasonNotifier.debugLog("fadeOut: " + fadeOut);
 
-        serverPlayer.connection.send(new ClientboundSetTitleTextPacket(Component.literal(title).setStyle(Style.EMPTY.withColor(titleColor))));
-        serverPlayer.connection.send(new ClientboundSetSubtitleTextPacket(Component.literal(subtitle).setStyle(Style.EMPTY.withColor(subtitleColor))));
+        serverPlayer.connection.send(new ClientboundSetTitleTextPacket(title.copy().setStyle(Style.EMPTY.withColor(titleColor))));
+        serverPlayer.connection.send(new ClientboundSetSubtitleTextPacket(subtitle.copy().setStyle(Style.EMPTY.withColor(subtitleColor))));
         serverPlayer.connection.send(new ClientboundSetTitlesAnimationPacket(fadeIn, stay, fadeOut));
             
         TFCSeasonNotifier.debugLog("Message sent to " + serverPlayer.getName().getString());
