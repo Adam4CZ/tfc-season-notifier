@@ -34,10 +34,10 @@ public class MessageSender {
         Integer stay = ClientConfig.STAY.get();
         Integer fadeOut = ClientConfig.FADE_OUT.get();
         
-        TFCSeasonNotifier.debugLog("title: " + title);
-        TFCSeasonNotifier.debugLog("subtitle: " + subtitle);
-        TFCSeasonNotifier.debugLog("titleColor: " + titleColor.toString());
-        TFCSeasonNotifier.debugLog("subtitleColor: " + subtitleColor.toString());
+        TFCSeasonNotifier.debugLog("title: " + title.getString());
+        TFCSeasonNotifier.debugLog("subtitle: " + subtitle.getString());
+        TFCSeasonNotifier.debugLog("titleColor: " + titleColor.getName());
+        TFCSeasonNotifier.debugLog("subtitleColor: " + subtitleColor.getName());
         TFCSeasonNotifier.debugLog("fadeIn: " + fadeIn);
         TFCSeasonNotifier.debugLog("stay: " + stay);
         TFCSeasonNotifier.debugLog("fadeOut: " + fadeOut);

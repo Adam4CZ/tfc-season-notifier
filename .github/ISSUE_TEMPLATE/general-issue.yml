@@ -54,9 +54,8 @@ body:
       label: TFC Season Notifier version
       description: What version of this addon are you using?
       options:
-        - 1.1.0 (Latest)
-        - Older
-        - Other (describe in description)
+        - 1.2.0 (Latest)
+        - Older (write the version in the description)
     validations:
       required: true
   - type: textarea

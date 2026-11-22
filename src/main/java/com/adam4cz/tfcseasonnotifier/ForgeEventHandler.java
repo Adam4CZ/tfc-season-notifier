@@ -12,14 +12,19 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = TFCSeasonNotifier.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventHandler {
     
-    private static long lastCheckTick = 0;
-    private static Month lastMonth = null;
+    private static Month lastMonth;
+
+    @SubscribeEvent
+    public static void onServerStarting(ServerStartingEvent event) {
+        lastMonth = null;
+    }
 
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
@@ -66,22 +71,10 @@ public class ForgeEventHandler {
         TFCSeasonNotifier.debugLog("event.phase: " + event.phase);
 
         // Initial conditions
-        if (event.level.dimension() != Level.OVERWORLD || event.phase != TickEvent.Phase.START || !(event.level instanceof ServerLevel serverLevel)) return;
-
-        long currentDayTime = serverLevel.getDayTime();
-
-        // Continue only if a minute pass in the game
-        if ((currentDayTime - lastCheckTick) < CalendarChecker.TICKS_IN_MINUTE) {
-            TFCSeasonNotifier.debugLog("currentDayTime: " + currentDayTime);
-            TFCSeasonNotifier.debugLog("lastCheckTick: " + lastCheckTick);
-            return;
-        }
-        
-        lastCheckTick = currentDayTime;
+        if (event.level.dimension() != Level.OVERWORLD || event.phase != TickEvent.Phase.END || !(event.level instanceof ServerLevel serverLevel)) return;
         
         Month currentMonth = CalendarChecker.getCurrentMonth(serverLevel);
         
-        TFCSeasonNotifier.debugLog("currentDayTime: " + currentDayTime);
         TFCSeasonNotifier.debugLog("lastMonth: " + (lastMonth != null ? lastMonth.name() : "null" ));
         TFCSeasonNotifier.debugLog("currentMonth: " + currentMonth.name());
 
@@ -96,7 +89,7 @@ public class ForgeEventHandler {
                 
                 MessageSender.sendMessageToPlayer(serverPlayer, currentMonth);
                 
-                TFCSeasonNotifier.debugLog("MessageSender.sendMessageToPlayer executed for player: " + serverPlayer.getName().getString());
+                TFCSeasonNotifier.debugLog("Month notification executed for player: " + serverPlayer.getName().getString());
             }
         }
     }
